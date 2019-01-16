@@ -1,0 +1,2 @@
+# EZMail
+Email scheduling/managing 
