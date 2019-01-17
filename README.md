@@ -1,2 +1,2 @@
-# EZMail
+# MailAway
 Email scheduling/managing 
