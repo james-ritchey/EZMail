@@ -1,0 +1,25 @@
+{
+  "name": "mailaway",
+  "version": "1.0.0",
+  "description": "Email scheduling/managing",
+  "main": "email_server.js",
+  "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "dotenv": "^6.2.0",
+    "googleapis": "^27.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/james-ritchey/MailAway.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/james-ritchey/MailAway/issues"
+  },
+  "homepage": "https://github.com/james-ritchey/MailAway#readme"
+}
