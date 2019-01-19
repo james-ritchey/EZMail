@@ -1,15 +1,19 @@
+var Mailer = require("./mailer.js");
 require("dotenv").config();
-// using SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const msg = {
-  to: 'jim0ritchey@gmail.com',
-  from: 'test@example.com',
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+
+var mailOptions = {
+    from: 'jim0ritchey@gmail.com',
+    to: 'jimritchey@ymail.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
 };
-sgMail.send(msg).catch(function(err) {
-    console.log("Broke at: " + err);
-});
+
+var transportOptions = {
+    service: 'gmail',
+    auth: {
+        user: 'jim0ritchey@gmail.com',
+        pass: process.env.GMAIL_PASSWORD
+    }
+}
+
+Mailer.sendMail(transportOptions, mailOptions);
