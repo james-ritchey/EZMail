@@ -33,13 +33,7 @@ var options = {
     secure: false
 }
 
-var imap = new Imap({
-    user: "jim0ritchey@gmail.com",
-    password: process.env.GMAIL_PASSWORD,
-    host: 'imap.gmail.com',
-    port: 993,
-    tls: 'true'
-});
+
 
 
 
