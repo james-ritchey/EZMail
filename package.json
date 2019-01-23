@@ -5,8 +5,11 @@
   "main": "email_server.js",
   "dependencies": {
     "dotenv": "^6.2.0",
+    "imap": "^0.8.19",
     "nodemailer": "^5.1.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "smtp-server": "^3.5.0",
+    "xoauth2": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {
