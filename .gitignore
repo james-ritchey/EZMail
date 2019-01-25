@@ -1,1 +1,4 @@
 .env
+package-lock.json
+.sequelizerc
+/node_modules/
