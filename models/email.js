@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
       From: DataTypes.STRING,
       Subject: DataTypes.STRING,
       To: DataTypes.String,
-      Body: DataTypes.TEXT
+      Body: DataTypes.TEXT,
+      SendDate: Datatype.DATE
     });
     return Email;
   };
