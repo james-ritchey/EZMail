@@ -29,12 +29,4 @@ var transportOptions = {
     }
 }
 
-var options = {
-    secure: false
-}
-
-
-
-
-
 Mailer.sendMail(transportOptions, mailOptions);
