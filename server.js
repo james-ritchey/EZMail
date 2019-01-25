@@ -13,8 +13,6 @@ app.use(express.static("public"));
 
 
 // Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };
 
@@ -34,5 +32,6 @@ db.sequelize.sync(syncOptions).then(function() {
     );
   });
 });
-
+var Scheduler = require("./mailScheduler");
+Scheduler.checkMailList();
 module.exports = app;

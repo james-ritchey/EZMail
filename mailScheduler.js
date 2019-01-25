@@ -1,4 +1,5 @@
 var Mailer = require("./mailer.js");
+var db = require("./models");
 require("dotenv").config();
 
 var interval = null;
@@ -14,29 +15,11 @@ var Scheduler = {
         var date = new Date();
         var dateAndTime = date.getHours() + ":" + date.getMinutes() + " on " + date.getDate() + " " + date.getMonth();
         console.log("Checking for emails scheduled for " + dateAndTime + "\nKill: " + Scheduler.kill);
-        var emailList = [{
-            mailOptions: {
-                from: 'jim0ritchey@gmail.com',
-                to: 'jimritchey@ymail.com',
-                subject: 'Mailer test at ' + dateAndTime,
-                text: 'That was easy!'
-            },
-            transportOptions: {
-                service: 'gmail',
-                host: 'smtp.gmail.com',
-                secure: 'true',
-                port: '465',
-                auth: {
-                    type: 'OAuth2',
-                    user: 'jim0ritchey@gmail.com',
-                    //pass: process.env.GMAIL_PASSWORD,
-                    clientId: process.env.GMAIL_CLIENTID,
-                    clientSecret: process.env.GMAIL_CLIENTSECRET,
-                    refreshToken: process.env.GMAIL_REFRESHTOKEN
-                }
-            }
-        }]
-        Scheduler.addToDraft(emailList);
+        var currentTime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes());
+        db.Email.findAll({where: {SendDate: currentTime}}).then(function(dbEmail){
+            console.log(dbEmail);
+        });
+        //Scheduler.addToDraft(emailList);
         clearInterval(interval);
         interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenSeconds);
     },
