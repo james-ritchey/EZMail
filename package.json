@@ -5,6 +5,7 @@
   "main": "email_server.js",
   "dependencies": {
     "dotenv": "^6.2.0",
+    "express": "^4.16.4",
     "imap": "^0.8.19",
     "mysql2": "^1.6.4",
     "nodemailer": "^5.1.1",
