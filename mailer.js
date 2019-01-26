@@ -1,6 +1,5 @@
 const nodemailer = require("nodemailer");
 
-
 var Mailer = {
     
     sendMail: function(transporterInfo, mailOptions) {
@@ -10,12 +9,9 @@ var Mailer = {
                 console.log(err);
             }
             else {
-                console.log("Email sent: " + info);
+                console.log("Email sent: " + JSON.stringify(info));
             }
         });
-    },
-    getMail: function() {
-
     }
 }
 
