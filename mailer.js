@@ -1,8 +1,12 @@
 const nodemailer = require("nodemailer");
 
-
 var Mailer = {
-    
+    /**
+     * Uses the passed transporterInfo and mailOptions to send
+     * the email to the recipients
+     * @param {*} transporterInfo 
+     * @param {*} mailOptions 
+     */
     sendMail: function(transporterInfo, mailOptions) {
         var transporter = nodemailer.createTransport(transporterInfo);
             transporter.sendMail(mailOptions, function(err, info) {
@@ -10,12 +14,9 @@ var Mailer = {
                 console.log(err);
             }
             else {
-                console.log("Email sent: " + info);
+                console.log("Email sent: " + JSON.stringify(info));
             }
         });
-    },
-    getMail: function() {
-
     }
 }
 

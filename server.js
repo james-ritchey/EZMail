@@ -1,5 +1,6 @@
 require("dotenv").config();
 var express = require("express");
+var moment = require("moment");
 
 var db = require("./models");
 
@@ -33,5 +34,12 @@ db.sequelize.sync(syncOptions).then(function() {
   });
 });
 var Scheduler = require("./mailScheduler");
-Scheduler.checkMailList();
+Scheduler.addEmail({
+        from: 'jim0ritchey@gmail.com',
+        to: 'jimritchey@ymail.com',
+        subject: 'Mailer test with db',
+        text: 'That was easy!',
+        send_date: moment(new Date(), "MM DD YYYY, HH:mm")
+});
+Scheduler.startTimer();
 module.exports = app;
