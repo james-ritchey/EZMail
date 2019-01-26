@@ -8,10 +8,13 @@ var interval = null;
 var Scheduler = {
     fifteenMinutes: 900000,
     fifteenSeconds: 15000,
-    kill: false,
     startTimer: function() {
         interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenSeconds)
     },
+    /**
+     * Checks the database for any emails scheduled to be sent at the current time, then
+     * sets the interval for the next check to 15 minutes from then.
+     */
     checkMailList: function() {
         var currentTime = moment(new Date());
         console.log("Checking for emails scheduled for " + currentTime.format("MM DD YYYY, HH:mm") + "\n==========================");
@@ -27,6 +30,10 @@ var Scheduler = {
         });
 
     },
+    /**
+     * Adds an email to the database, used for testing
+     * @param {*} email 
+     */
     addEmail: function(email){
         console.log("\nCreates new email, used for testing\n========================")
         db.Email.create(
@@ -41,6 +48,10 @@ var Scheduler = {
             console.log(JSON.stringify(dbEmail) + "\n=======================\n");
         });
     },
+    /**
+     * Builds the mailOptions object using the passed email, then sends it to the sendDraftedMail method
+     * @param {*} email 
+     */
     addToDraft: function(email) {
         var mailOptions = {
             from: email.From,
@@ -51,6 +62,11 @@ var Scheduler = {
         console.log("\nAdd any emails scheduled to be sent to the mailer.\nEmails: " + JSON.stringify(mailOptions) + "\n================================");
         Scheduler.sendDraftedMail(mailOptions);
     },
+    /**
+     * Finds the user account that corresponds with the sender email, builds the transporter object
+     * and sends the info to the Mailer object
+     * @param {*} mail 
+     */
     sendDraftedMail: function(mail){
         var transporter = {auth: {}};
         db.Account.findAll({where: {email: mail.from}}).then(function(dbAccount){

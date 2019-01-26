@@ -21,12 +21,12 @@ var transportOptions = {
     secure: 'true',
     port: '465',
     auth: {
-        //type: 'OAuth2',
+        type: 'OAuth2',
         user: 'jim0ritchey@gmail.com',
         pass: process.env.GMAIL_PASSWORD,
-        /*clientId: process.env.GMAIL_CLIENTID,
+        clientId: process.env.GMAIL_CLIENTID,
         clientSecret: process.env.GMAIL_CLIENTSECRET,
-        refreshToken: process.env.GMAIL_REFRESHTOKEN*/
+        refreshToken: process.env.GMAIL_REFRESHTOKEN
     }
 }
 
