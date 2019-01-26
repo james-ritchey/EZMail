@@ -12,7 +12,6 @@ module.exports = function(app) {
         db.email.create({
             To: req.body.To,
             From: req.body.From,
-            Cc: req.body.Cc,
             Subject: req.body.Subject,
             Body: req.body.Body,
             SendDate: req.body.SendDate
@@ -27,7 +26,6 @@ module.exports = function(app) {
         db.email.create({
             To: req.body.To,
             From: req.body.From,
-            Cc: req.body.Cc,
             Subject: req.body.Subject,
             Body: req.body.Body,
             SendDate: req.body.SendDate
