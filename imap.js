@@ -22,16 +22,18 @@ imap.once("ready", function() {
             if (err) throw err;
             var f = imap.fetch(results, { bodies: "" });
             f.on("message", function(msg, seqno) {
-                console.log("Message #%d", seqno);
-                var prefix = "(#" + seqno + ") ";
+                var email = {
+                    to: "",
+                    from: "",
+                    body: "",
+                    subject: ""
+                };
                 msg.on("body", function(stream, info) {
-                    console.log(prefix + "Body");
+                    console.log(stream);
                 });
                 msg.once("attributes", function(attrs) {
-                    console.log(prefix + "Attributes: %s", inspect(attrs, false, 8));
                 });
                 msg.once("end", function() {
-                    console.log(prefix + "Finished");
                 });
             });
             f.once("error", function(err) {

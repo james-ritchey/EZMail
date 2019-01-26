@@ -2,14 +2,16 @@ var Mailer = require("./mailer.js");
 var db = require("./models");
 var moment = require("moment");
 require("dotenv").config();
-
+/**The interval for the Scheduler object */
 var interval = null;
 
 var Scheduler = {
+    /**Fifteen minute interval used for production */
     fifteenMinutes: 900000,
+    /**Fifteen second interval used for testing */
     fifteenSeconds: 15000,
     startTimer: function() {
-        interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenSeconds)
+        interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenMinutes)
     },
     /**
      * Checks the database for any emails scheduled to be sent at the current time, then
@@ -26,7 +28,7 @@ var Scheduler = {
             });
         }).then(function(){
             clearInterval(interval);
-            interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenSeconds);
+            interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenMinutes);
         });
 
     },
@@ -87,5 +89,5 @@ var Scheduler = {
 
     }
 }
-
+/**Export the Scheduler object */
 module.exports = Scheduler;

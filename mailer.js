@@ -19,5 +19,5 @@ var Mailer = {
         });
     }
 }
-
+/**Export the Mailer object */
 module.exports = Mailer;
