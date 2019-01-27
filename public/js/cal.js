@@ -1,4 +1,10 @@
 $(document).ready(function () {
+  var jsonData;
+  $.get("/api/email", function (data) {
+    jsonData = data;
+    console.log(jsonData);
+  });
+
   $('#bootstrapModalFullCalendar').fullCalendar({
     dayClick: function (date, jsEvent, view) {
       $(this).css('background-color', 'red');
@@ -11,14 +17,7 @@ $(document).ready(function () {
       right: ''
     },
     events: [
-      {
-        "title": "CSS Meetup",
-        "allday": "false",
-        "description": "<p>This is just a fake description for the CSS Meetup.</p><p>Nothing to see!</p>",
-        "start": moment().add('days', 27),
-        "end": moment().add('days', 27),
-        "url": "http://www.mikesmithdev.com/blog/migrating-from-asp-net-to-ghost-node-js/"
-      }
+
     ]
   });
 });
