@@ -2,7 +2,7 @@ require('dotenv').config(); // this is important!
 module.exports = {
   "development": {
     "username": "root",
-    "password": process.env.MY_SQL_PASSWORD,
+    "password": process.env.MYSQL_PSWD,
     "database": "mailAwayDb",
     "host": "localhost",
     "dialect": "mysql"
