@@ -36,7 +36,7 @@ $(document).ready(function () {
 // buttons to call routes
 var userEmail;
 
-$("#fullCalModal").on("click", function (event) {
+$("#send-button").on("click", function (event) {
   event.preventDefault();
   var email = {
     To: $("#email-to").val().trim(),
@@ -48,7 +48,7 @@ $("#fullCalModal").on("click", function (event) {
 
   console.log(email);
 
-  $.post("/api/tables", email,
+  $.post("/api/email", email,
     function (data) {
       alert("Your email has been scheduled!")
       // Clear the form when submitting
