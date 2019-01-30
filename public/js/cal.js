@@ -9,7 +9,7 @@ $(document).ready(function () {
 
   $('#bootstrapModalFullCalendar').fullCalendar({
     dayClick: function (date, jsEvent, view) {
-      dateVal = date;
+      dateVal = date._d;
       $(this).css('background-color', 'red');
       $("#fullCalModal").modal("show");
     },
@@ -36,11 +36,12 @@ $(document).ready(function () {
 // buttons to call routes
 var userEmail;
 
-$("#send-button").on("click", function (event) {
+$(".submit").on("click", function (event) {
   event.preventDefault();
+  console.log(dateVal);
   var email = {
     To: $("#email-to").val().trim(),
-    From: userEmail,
+    From: "test@email.com",
     Subject: $("#subject").val().trim(),
     Body: $("#message-body").val().trim(),
     SendDate: dateVal
