@@ -1,9 +1,3 @@
-.ui-dialog-title {
-  background-image: url(http://image005.flaticon.com/1/svg/109/109978.svg);
-  background-repeat: no-repeat;
-  padding-left: 25px;
-}
-
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -33,4 +27,11 @@
 
 #email-list {
   grid-column: 1/4;
+}
+
+/* so dropdown menu wont fall behing modal
+now its static on the page need to fix */
+.ui-timepicker{
+  position: absolute;
+  z-index: 9000 !important;
 }

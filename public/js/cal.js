@@ -40,7 +40,17 @@ $(document).ready(function () {
     events: jsonData,
   });
 
-  $("#time").timePicker();
+  $('#timepicker').timepicker({
+    timeFormat: 'h:mm p',
+    interval: 15,
+    minTime: '10',
+    maxTime: '6:00pm',
+    defaultTime: '11',
+    startTime: '10:00',
+    dynamic: true,
+    dropdown: true,
+    scrollbar: true
+  });
 });
 
 
@@ -65,11 +75,14 @@ $(".submit").on("click", function (event) {
       alert("Your email has been scheduled!")
       // Clear the form when submitting
       $("#email-to").val("");
+      $("#bcc").val("");
       $("#subject").val("");
       $("#message-body").val("");
 
     });
-
+  // need to figure out why modal is not closing
+  $("bootstrapModalFullCalendar").modal("close");
+  return false;
 });
 // #schedule-email
 // #update-email
