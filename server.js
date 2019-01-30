@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 
 // Routes
-
+app.use("routes");
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
@@ -24,8 +24,8 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -35,11 +35,11 @@ db.sequelize.sync(syncOptions).then(function() {
 });
 var Scheduler = require("./mailScheduler");
 Scheduler.addEmail({
-        from: 'jim0ritchey@gmail.com',
-        to: 'jimritchey@ymail.com',
-        subject: 'Mailer test with db',
-        text: 'That was easy!',
-        send_date: moment(new Date(), "MM DD YYYY, HH:mm")
+  from: 'jim0ritchey@gmail.com',
+  to: 'jimritchey@ymail.com',
+  subject: 'Mailer test with db',
+  text: 'That was easy!',
+  send_date: moment(new Date(), "MM DD YYYY, HH:mm")
 });
 Scheduler.startTimer();
 module.exports = app;
