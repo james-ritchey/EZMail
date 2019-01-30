@@ -9,7 +9,7 @@ $(document).ready(function () {
 
   $('#bootstrapModalFullCalendar').fullCalendar({
     dayClick: function (date, jsEvent, view) {
-      dateVal = date;
+      dateVal = date._d;
       $(this).css('background-color', 'red');
       $("#fullCalModal").modal("show");
     },
@@ -36,8 +36,9 @@ $(document).ready(function () {
 // buttons to call routes
 var userEmail;
 
-$("#fullCalModal").on("click", function (event) {
+$(".submit").on("click", function (event) {
   event.preventDefault();
+  console.log(dateVal);
   var email = {
     To: $("#email-to").val().trim(),
     From: userEmail,
@@ -48,7 +49,7 @@ $("#fullCalModal").on("click", function (event) {
 
   console.log(email);
 
-  $.post("/api/tables", email,
+  $.post("/api/email", email,
     function (data) {
       alert("Your email has been scheduled!")
       // Clear the form when submitting
