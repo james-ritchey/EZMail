@@ -12,6 +12,7 @@
     "nodemailer": "^5.1.1",
     "sequelize": "^4.42.0",
     "sequelize-cli": "^5.4.0",
+    "timepicker": "^1.11.14",
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {},
