@@ -1,3 +1,4 @@
+var dateVal;
 $(document).ready(function () {
   var jsonData;
   $.get("/api/email", function (data) {
@@ -5,19 +6,59 @@ $(document).ready(function () {
     console.log(jsonData);
   });
 
+
   $('#bootstrapModalFullCalendar').fullCalendar({
     dayClick: function (date, jsEvent, view) {
+      dateVal = date;
       $(this).css('background-color', 'red');
       $("#fullCalModal").modal("show");
     },
+    aspectRatio: 3,
     height: 'auto',
     header: {
-      left: '',
-      center: 'prev title next',
-      right: ''
+      left: 'prev next',
+      center: 'title',
+      right: 'listDay listWeek month'
     },
-    events: [
-
-    ]
+    views: {
+      listDay: { buttonText: 'list day' },
+      listWeek: { buttonText: 'list week' }
+    },
+    navLinks: true,
+    editable: true,
+    events: jsonData,
   });
+
+  $("#time").timePicker();
 });
+
+
+// buttons to call routes
+var userEmail;
+
+$("#fullCalModal").on("click", function (event) {
+  event.preventDefault();
+  var email = {
+    To: $("#email-to").val().trim(),
+    From: userEmail,
+    Subject: $("#subject").val().trim(),
+    Body: $("#message-body").val().trim(),
+    SendDate: dateVal
+  };
+
+  console.log(email);
+
+  $.post("/api/tables", email,
+    function (data) {
+      alert("Your email has been scheduled!")
+      // Clear the form when submitting
+      $("#email-to").val("");
+      $("#subject").val("");
+      $("#message-body").val("");
+
+    });
+
+});
+// #schedule-email
+// #update-email
+// #delete-email
