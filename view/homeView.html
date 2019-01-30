@@ -1,73 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta http-equiv="X-UA-Compatible" content="ie=edge">
- <title>Mail Away</title>
- <style>
-   .container {
-     display: grid;
-     grid-template-columns: repeat(3, 1fr);
-     grid-gap: 1em;
-   }
-
-   .container>div {
-     background: #eee;
-     padding: 1em;
-   }
-
-   .container>div:nth-child(odd) {
-     background: #ddd;
-   }
-
-   #accounts {
-     grid-column: 1/2;
-   }
-
-   #calendar {
-     grid-column: 2/4;
-   }
-
-   #operation-buttons {
-     grid-column: 1/4;
-   }
-
-   #email-list {
-     grid-column: 1/4;
-   }
- </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mail Away</title>
+  <link href="https://bootswatch.com/4/minty/bootstrap.min.css" type="text/css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" type="text/css" rel="stylesheet" />
+  <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
 </head>
-
 <body>
-
- <div id="header">
-   <h1>Mail Away</h1>
- </div>
-
- <div class="container">
-   <div id="accounts">
-     <ul>
-       <li>Apple Mail</li>
-       <li>outlook</li>
-       <li>gmail</li>
-     </ul>
-   </div>
-
-   <div id="calendar" style="height: 400px;"></div>
-
-   <div id="operation-buttons">
-     <button id="send-email">send email</button>
-   </div>
-
-   <div id="email-list">
-     <p>emails go here</p>
-   </div>
-
- </div>
-
- <script src="calendar.js"></script>
+  <div id="header">
+    <h1>Mail Away</h1>
+  </div>
+  <div class="wrapper">
+    <div id="accounts">
+      <ul>
+        <li>Apple Mail</li>
+        <li>outlook</li>
+        <li>gmail</li>
+      </ul>
+    </div>
+    <div id=calendar>
+      <div id="bootstrapModalFullCalendar"></div>
+    </div>
+    <div id="email-list">
+      <p>emails go here</p>
+    </div>
+  </div>
+  <!--Modal: Form-->
+  <div class="modal fade" id="fullCalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <!--Modal cascading tabs-->
+        <div class="modal-c-tabs">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab"><i class="fas fa-user mr-1"></i>
+                Schedule Mail</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#panel2" role="tab"><i class="fas fa-user-plus mr-1"></i>
+                Suggested Times</a>
+            </li>
+          </ul>
+          <!-- Tab panels -->
+          <div class="tab-content">
+            <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+              <!--Body-->
+              <div class="modal-body mb-1">
+                <section class="mb-4">
+                  <!--Section heading-->
+                  <h2 class="h1-responsive font-weight-bold text-center my-4">Send Email</h2>
+                  <h3 id="date"></h3>
+                  <form id="contact-form" name="contact-form" action="/api/email" method="POST">
+                    <!--Grid row-->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="md-form mb-0">
+                          <label for="email" class="">To</label>
+                          <input type="text" id="email-to" name="email" class="form-control">
+                        </div>
+                      </div>
+                      <!--Grid column-->
+                      <div class="col-md-6">
+                        <div class="md-form mb-0">
+                          <label for="name" class="">Bcc</label>
+                          <input type="text" id="bcc" name="email" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="md-form mb-0">
+                          <label for="subject" class="">Subject</label>
+                          <input type="text" id="subject" name="subject" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label for="message">Message</label>
+                        <textarea type="text" id="message-body" name="message" rows="6" class="form-control md-textarea"></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <!--Grid column-->
+                      <div class="col-md-12">
+                        <label for="attach">Attach File</label>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                          </div>
+                          <div class="custom-file">
+                            <input type="file" name="attach" class="custom-file-input" id="inputGroupFile01"
+                              aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div id="time"></div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="text-center text-md-right">
+                    <button class="btn btn-light" id="send-button">Send</button>>
+                  </div>
+                </section>
+              </div>
+              <!--Footer-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            <!--Panel 2-->
+            <div class="tab-pane fade" id="panel2" role="tabpanel">
+              <!--Body-->
+              <div class="modal-body">
+              </div>
+              <!--Footer-->
+              <div class="modal-footer">
+                <div class="options text-right">
+                </div>
+                <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="js/cal.js"></script>
 </body>
-
 </html>

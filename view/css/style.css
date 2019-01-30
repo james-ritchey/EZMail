@@ -43,31 +43,7 @@ h1 {
   font-size: 25px;
 }
 
-/* TYPEWRITER STYLES */
-.typewriter p {
-  color: #FFD500;
-  font-family: 'Quicksand', sans-serif;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em #6EC5B8; /* The typewriter cursor */
-  white-space: nowrap; /* Wraps the content on multiple lines */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
-    typing 3.5s steps(30, end),
-    blink-caret .5s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange }
-
+/* TYPEWRITER STYLES */ 
   .typewriter p {
     border-right: .15em #6EC5B8;
     color: #FFD500;
@@ -76,7 +52,7 @@ h1 {
     overflow: hidden;
   }
   .typewriter p:nth-child(1) {
-    width: 7.3em;
+    width: 50.3em;
     -webkit-animation: type 2s steps(40, end);
     animation: type 2s steps(40, end);
     -webkit-animation-fill-mode: forwards;
@@ -84,9 +60,9 @@ h1 {
   }
   
   .typewriter p:nth-child(2) {
-    width: 11.5em;
+    width: 50.5em;
     opacity: 0;
-    -webkit-animation: type2 2s steps(40, end);
+    -webkit-animation: type2 5s steps(40, end);
     animation: type2 2s steps(40, end);
     -webkit-animation-delay: 2s;
     animation-delay: 2s;
@@ -95,15 +71,17 @@ h1 {
   }
   
   .typewriter p:nth-child(3) {
-    width: 7.3em;
+    width: 50.3em;
     opacity: 0;
-    -webkit-animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
-    animation: type3 5s steps(20, end), blink .5s step-end infinite alternate;
+    -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+    animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
     -webkit-animation-delay: 4s;
     animation-delay: 4s;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
   }
+
+  
   
   @keyframes type {
     0% {
@@ -192,6 +170,40 @@ h1 {
   }
   @-webkit-keyframes blink {
     50% {
-      border-color: tranparent;
+      border-color: transparent;
     }
   }
+
+  /* Home View CSS */
+  
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+  }
+  
+  .wrapper>div {
+    background: #eee;
+    padding: 1em;
+  }
+  
+  .wrapper>div:nth-child(odd) {
+    background: #ddd;
+  }
+  
+  #accounts {
+    grid-column: 1/2;
+  }
+  
+  #calendar {
+    grid-column: 2/4;
+  }
+  
+  #operation-buttons {
+    grid-column: 1/4;
+  }
+  
+  #email-list {
+    grid-column: 1/4;
+  }
+
