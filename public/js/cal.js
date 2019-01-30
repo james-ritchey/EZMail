@@ -1,9 +1,20 @@
 var dateVal;
+
 $(document).ready(function () {
+
   var jsonData;
   $.get("/api/email", function (data) {
     jsonData = data;
     console.log(jsonData);
+    data.forEach(element => {
+      $("#email-data").append(`
+    <tr>
+    <td>${element.From}</td>
+    <td>${element.Subject}</td> 
+    <td>${element.SendDate}</td>
+  </tr>`
+      );
+    });
   });
 
 
@@ -33,7 +44,7 @@ $(document).ready(function () {
 });
 
 
-// buttons to call routes
+
 var userEmail;
 
 $(".submit").on("click", function (event) {

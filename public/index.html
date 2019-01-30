@@ -19,6 +19,7 @@
   </div>
 
   <div class="wrapper">
+
     <div id="accounts">
       <ul>
         <li>Apple Mail</li>
@@ -26,12 +27,24 @@
         <li>gmail</li>
       </ul>
     </div>
+
+
     <div id=calendar>
       <div id="bootstrapModalFullCalendar"></div>
     </div>
 
     <div id="email-list">
-      <p>emails go here</p>
+      <h3>Emails</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Send Date</th>
+          </tr>
+        </thead>
+        <tbody id="email-data"></tbody>
+      </table>
     </div>
   </div>
 
