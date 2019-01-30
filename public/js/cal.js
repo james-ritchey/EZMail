@@ -41,7 +41,7 @@ $(".submit").on("click", function (event) {
   console.log(dateVal);
   var email = {
     To: $("#email-to").val().trim(),
-    From: "test@email.com",
+    From: userEmail,
     Subject: $("#subject").val().trim(),
     Body: $("#message-body").val().trim(),
     SendDate: dateVal
