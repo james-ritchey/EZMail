@@ -12,7 +12,28 @@ var Scheduler = {
     fifteenSeconds: 15000,
     startTimer: function () {
         console.log("\n=== Timer Started === \n");
-        Scheduler.checkMailList();
+        var mins = new Date().getMinutes();
+        if(mins < 15) {
+            var diff = 15 - mins;
+            console.log("diff: " + diff);
+            interval = setInterval(Scheduler.checkMailList, diff * 60000);
+        }
+        else if(mins < 30) {
+            var diff = 30 - mins;
+            console.log("diff: " + diff);
+            interval = setInterval(Scheduler.checkMailList, diff * 60000);
+        }
+        else if(mins < 45) {
+            var diff = 45 - mins;
+            console.log("diff: " + diff);
+            interval = setInterval(Scheduler.checkMailList, diff * 60000);
+        }
+        else if(mins < 60) {
+            var diff = 60 - mins;
+            console.log("diff: " + diff);
+            interval = setInterval(Scheduler.checkMailList, diff * 60000);
+        }
+        console.log("Minutes: " + mins);
     },
     /**
      * Checks the database for any emails scheduled to be sent at the current time, then
