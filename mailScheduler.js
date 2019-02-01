@@ -11,7 +11,8 @@ var Scheduler = {
     /**Fifteen second interval used for testing */
     fifteenSeconds: 15000,
     startTimer: function () {
-        interval = setInterval(Scheduler.checkMailList, Scheduler.fifteenMinutes)
+        console.log("\n=== Timer Started === \n");
+        Scheduler.checkMailList();
     },
     /**
      * Checks the database for any emails scheduled to be sent at the current time, then

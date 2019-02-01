@@ -1,9 +1,20 @@
 var dateVal;
+
 $(document).ready(function () {
+
   var jsonData;
   $.get("/api/email", function (data) {
     jsonData = data;
     console.log(jsonData);
+    data.forEach(element => {
+      $("#email-data").append(`
+    <tr>
+    <td>${element.From}</td>
+    <td>${element.Subject}</td> 
+    <td>${element.SendDate}</td>
+  </tr>`
+      );
+    });
   });
 
 
@@ -29,16 +40,26 @@ $(document).ready(function () {
     events: jsonData,
   });
 
-  $("#time").timePicker();
+  $('#timepicker').timepicker({
+    timeFormat: 'h:mm p',
+    interval: 15,
+    minTime: '10',
+    maxTime: '6:00pm',
+    defaultTime: '11',
+    startTime: '10:00',
+    dynamic: true,
+    dropdown: true,
+    scrollbar: true
+  });
 });
 
 
-// buttons to call routes
-var userEmail;
+
+var userEmail = localStorage.getItem("userEmail");
 
 $(".submit").on("click", function (event) {
   event.preventDefault();
-  console.log(dateVal);
+  console.log();
   var email = {
     To: $("#email-to").val().trim(),
     From: userEmail,
@@ -54,11 +75,14 @@ $(".submit").on("click", function (event) {
       alert("Your email has been scheduled!")
       // Clear the form when submitting
       $("#email-to").val("");
+      $("#bcc").val("");
       $("#subject").val("");
       $("#message-body").val("");
 
     });
-
+  // need to figure out why modal is not closing
+  $("bootstrapModalFullCalendar").modal("close");
+  return false;
 });
 // #schedule-email
 // #update-email
