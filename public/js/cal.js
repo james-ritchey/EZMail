@@ -70,6 +70,7 @@ $(document).ready(function () {
   });
 });
 
+<<<<<<< HEAD
 var userEmail;
 
 $(".submit").on("click", function (event) {
@@ -87,6 +88,15 @@ $(".submit").on("click", function (event) {
   dateVal = dateVal.toString().replace("19:00", hourMin);
   console.log("New Date " + dateVal)
 
+=======
+
+
+var userEmail = localStorage.getItem("userEmail");
+
+$(".submit").on("click", function (event) {
+  event.preventDefault();
+  console.log();
+>>>>>>> 5b53ec3005846ce4276e609a910bc94c66166d53
   var email = {
     To: $("#email-to").val().trim(),
     From: userEmail,
