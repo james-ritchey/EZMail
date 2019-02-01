@@ -55,11 +55,11 @@ $(document).ready(function () {
 
 
 
-var userEmail;
+var userEmail = localStorage.getItem("userEmail");
 
 $(".submit").on("click", function (event) {
   event.preventDefault();
-  console.log(dateVal);
+  console.log();
   var email = {
     To: $("#email-to").val().trim(),
     From: userEmail,
