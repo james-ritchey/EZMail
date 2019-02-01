@@ -37,7 +37,24 @@ $(document).ready(function () {
     },
     navLinks: true,
     editable: true,
-    events: jsonData,
+    events: function (start, end, timezone, callback) {
+      var events = [];
+      $.get("/api/email", function (data) {
+        data.forEach(element => {
+          events.push({
+            id: element.id,
+            title: element.Subject,
+            start: element.SendDate,
+            end: moment().format(element.SendDate, "YYYY-MM-DD HH:mm")
+
+          })
+        })
+        console.log(events);
+      });
+      callback(events);
+    },
+    color: "#33cccc",
+    textColor: "white",
   });
 
   $('#timepicker').timepicker({
@@ -53,13 +70,23 @@ $(document).ready(function () {
   });
 });
 
-
-
 var userEmail = localStorage.getItem("userEmail");
 
 $(".submit").on("click", function (event) {
   event.preventDefault();
-  console.log();
+  var timeSet = $("#timepicker").val();
+  var time = timeSet.split(" ");
+  var hourMin = time[0].split(":");
+
+  if (time[1] === "PM" && hourMin[0] !== "12") {
+    var tempTime = parseInt(hourMin[0]) + 12;
+    hourMin[0] = tempTime.toString();
+  };
+  hourMin = hourMin.join(":");
+  console.log("timeSet " + hourMin);
+  dateVal = dateVal.toString().replace("19:00", hourMin);
+  console.log("New Date " + dateVal)
+
   var email = {
     To: $("#email-to").val().trim(),
     From: userEmail,

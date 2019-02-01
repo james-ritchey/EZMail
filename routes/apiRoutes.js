@@ -1,9 +1,7 @@
 var db = require("../models");
 var moment = require("moment");
-var momenttz = require("moment-timezone");
 
 module.exports = function (app) {
-    momenttz.tz.setDefault("American/New_York");
     app.get("/api/email", function (req, res) {
         db.Email.findAll({}).then(function (dbemail) {
             res.json(dbemail);
@@ -14,14 +12,14 @@ module.exports = function (app) {
         console.log(req.body.SendDate);
         var tempDate = new Date(req.body.SendDate);
         tempDate = moment(tempDate);
-        tempDate.hour(4);
         console.log("\nTemp Date: " + tempDate.format("MM DD YYYY, HH:mm"));
+        var dateString = tempDate.format("MM DD YYYY, HH:mm");
         db.Email.create({
             To: req.body.To,
             From: req.body.From,
             Subject: req.body.Subject,
             Body: req.body.Body,
-            SendDate: tempDate.format("MM DD YYYY, HH:mm")
+            SendDate: dateString
         }).then(function (dbemail) {
             res.json(dbemail);
         }).catch(function (err) {
