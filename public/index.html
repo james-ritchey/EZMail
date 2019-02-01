@@ -9,23 +9,26 @@
   <link href="https://bootswatch.com/4/minty/bootstrap.min.css" type="text/css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css" type="text/css" rel="stylesheet" />
   <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />
-  <link href="css/style.css" type="text/css" rel="stylesheet" />
+  <link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 
 <body>
 
   <div id="header">
-    <h1>Mail Away</h1>
+    <img src="../public/images/MailAway-logo-black.png" alt="logo" class="logo">
+
+    <div id="accounts">
+        <ul>
+          <li>G-mail</li>
+          <li>Outlook</li>
+          <li>Yahoo</li>
+        </ul>
+    </div>
+
   </div>
 
+
   <div class="wrapper">
-    <div id="accounts">
-      <ul>
-        <li>Apple Mail</li>
-        <li>outlook</li>
-        <li>gmail</li>
-      </ul>
-    </div>
     <div id=calendar>
       <div id="bootstrapModalFullCalendar"></div>
     </div>
@@ -131,7 +134,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="text-center text-md-right">
-                          <button type="submit" class="btn btn-primary submit">Send</button>
+                          <button type="submit" class="btn btn-primary submit" id="send-button">Send</button>
                         </div>
                       </div>
                     </div>

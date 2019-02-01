@@ -3,13 +3,13 @@ var db = require("../models");
 module.exports = function (app) {
 
     app.get("/api/email", function (req, res) {
-        db.email.findAll({}).then(function (dbemail) {
+        db.Email.findAll({}).then(function (dbemail) {
             res.json(dbemail);
         });
     });
 
     app.post("/api/email", function (req, res) {
-        db.email.create({
+        db.Email.create({
             To: req.body.To,
             From: req.body.From,
             Subject: req.body.Subject,
@@ -18,12 +18,13 @@ module.exports = function (app) {
         }).then(function (dbemail) {
             res.json(dbemail);
         }).catch(function (err) {
+            console.log("Error on the post route");
             res.json(err);
         });
     });
 
     app.put("/api/email", function (req, res) {
-        db.email.create({
+        db.Email.create({
             To: req.body.To,
             From: req.body.From,
             Subject: req.body.Subject,
@@ -41,7 +42,7 @@ module.exports = function (app) {
     });
 
     app.delete("/api/email/:id", function (req, res) {
-        db.email.destroy({
+        db.Email.destroy({
             where: {
                 id: req.params.id
             }
