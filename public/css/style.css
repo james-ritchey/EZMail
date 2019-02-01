@@ -1,3 +1,20 @@
+body, html {
+  background-image: cover;
+}
+
+.ui-dialog-title {
+  background-image: url(http://image005.flaticon.com/1/svg/109/109978.svg);
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+.logo {
+  grid-column: 1/4;
+  width: 300px;
+  height: 120px;
+  align-content: center;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -14,11 +31,19 @@
 }
 
 #accounts {
-  grid-column: 1/2;
+  grid-column: 2/4;
+  background-color: black;
+  border-radius: 25px;
+    border-right: .15em #6EC5B8;
+    border-right: .15em #6EC5B8;
+    border: 2px solid ;
+  padding: 20px; 
+  width: 200px;
+  height: 150px; 
 }
 
 #calendar {
-  grid-column: 2/4;
+  grid-column: 1/2;
 }
 
 #operation-buttons {

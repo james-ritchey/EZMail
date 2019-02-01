@@ -174,36 +174,3 @@ h1 {
     }
   }
 
-  /* Home View CSS */
-  
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1em;
-  }
-  
-  .wrapper>div {
-    background: #eee;
-    padding: 1em;
-  }
-  
-  .wrapper>div:nth-child(odd) {
-    background: #ddd;
-  }
-  
-  #accounts {
-    grid-column: 1/2;
-  }
-  
-  #calendar {
-    grid-column: 2/4;
-  }
-  
-  #operation-buttons {
-    grid-column: 1/4;
-  }
-  
-  #email-list {
-    grid-column: 1/4;
-  }
-
