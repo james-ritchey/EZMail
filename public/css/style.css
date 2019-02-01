@@ -29,9 +29,9 @@
   grid-column: 1/4;
 }
 
-/* so dropdown menu wont fall behing modal
+/* so dropdown menu wont fall behind modal
 now its static on the page need to fix */
 .ui-timepicker{
-  position: absolute;
+  position: relative;
   z-index: 9000 !important;
 }
