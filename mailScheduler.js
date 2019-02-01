@@ -95,7 +95,7 @@ var Scheduler = {
         var transporter = { auth: {} };
         db.Account.findAll({ where: { email: mail.from } }).then(function (dbAccount) {
             var account = dbAccount[0].dataValues;
-            transporter.service = account.server;
+            transporter.service = "gmail";
             if (transporter.service === "gmail") {
                 transporter.host = 'smtp.gmail.com';
                 transporter.secure = true;
