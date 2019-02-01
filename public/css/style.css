@@ -53,3 +53,10 @@ body, html {
 #email-list {
   grid-column: 1/4;
 }
+
+/* so dropdown menu wont fall behind modal
+now its static on the page need to fix */
+.ui-timepicker{
+  position: relative;
+  z-index: 9000 !important;
+}
