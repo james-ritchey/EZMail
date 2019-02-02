@@ -1,5 +1,15 @@
 body, html {
-  background-image: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+img {
+  width: 100%;
+  height: 600px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .ui-dialog-title {
@@ -9,10 +19,12 @@ body, html {
 }
 
 .logo {
-  grid-column: 1/4;
-  width: 300px;
-  height: 120px;
-  align-content: center;
+  width: 400px;
+  height: 160px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  padding-top: 20px;
 }
 
 .wrapper {
@@ -30,8 +42,22 @@ body, html {
   background: #ddd;
 }
 
+h2 {
+  color: #ddd;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+h3 {
+  color: darkcyan;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+}
+
 #accounts {
-  grid-column: 2/4;
+  grid-column: 1/4;
   background-color: black;
   border-radius: 25px;
     border-right: .15em #6EC5B8;
@@ -44,6 +70,21 @@ body, html {
 
 #calendar {
   grid-column: 1/2;
+  padding-top: 20px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+  color: #ddd;
+}
+
+#bootstrapModalFullCalendar {
+  background:rgb(0,0,0);  
+  background: transparent\9;  
+  background:rgba(0,0,0,0.6);
+  padding-top: 20px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 30px;
 }
 
 #operation-buttons {
@@ -52,6 +93,13 @@ body, html {
 
 #email-list {
   grid-column: 1/4;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  background: transparent\9;  
+  background:rgb(225, 243, 134);
+  color: black;
 }
 
 /* so dropdown menu wont fall behind modal
